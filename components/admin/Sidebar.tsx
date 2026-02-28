@@ -10,7 +10,7 @@ import {
   QrCode,
   Settings,
   LogOut,
-  ChefHat,
+  Sprout,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { adminTranslations, AdminLanguage } from '@/lib/translations'
@@ -34,8 +34,8 @@ export default function AdminSidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-gray-100">
         <div className="flex items-center gap-3">
-          <div className="bg-orange-500 text-white rounded-lg p-2">
-            <ChefHat className="h-5 w-5" />
+          <div className="bg-green-600 text-white rounded-lg p-2">
+            <Sprout className="h-5 w-5" />
           </div>
           <div className="min-w-0">
             <p className="font-semibold text-sm truncate">

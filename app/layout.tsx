@@ -6,7 +6,7 @@ import { Providers } from './providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'MenuQR - Restaurant Menu & QR Code Platform',
+  title: "Sun's Bean Sprout - Restaurant Menu & QR Code Platform",
   description: 'Create digital menus with QR codes for your restaurant. Support for multiple languages.',
 }
 
