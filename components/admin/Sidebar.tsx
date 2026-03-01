@@ -12,6 +12,7 @@ import {
   Settings,
   LogOut,
   Sprout,
+  ShoppingBag,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { adminTranslations, AdminLanguage } from '@/lib/translations'
@@ -27,7 +28,8 @@ export default function AdminSidebar() {
     { href: '/admin/menu', icon: UtensilsCrossed, label: t.menu },
     { href: '/admin/tables', icon: TableProperties, label: t.tables },
     { href: '/admin/qrcodes', icon: QrCode, label: t.qrCodes },
-    { href: '/admin/bookings', icon: CalendarCheck, label: lang === 'EN' ? 'Bookings' : 'การจอง' },
+    { href: '/admin/orders', icon: ShoppingBag, label: t.orders },
+    { href: '/admin/bookings', icon: CalendarCheck, label: t.bookings },
     { href: '/admin/settings', icon: Settings, label: t.settings },
   ]
 
