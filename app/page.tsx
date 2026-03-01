@@ -14,6 +14,11 @@ import {
   CheckCircle,
   Crown,
   Gift,
+  BookOpen,
+  ImagePlus,
+  CalendarCheck,
+  Settings,
+  Download,
 } from 'lucide-react'
 
 type Lang = 'EN' | 'TH'
@@ -74,6 +79,22 @@ const t: Record<Lang, Record<string, string>> = {
     ctaDesc: 'Join restaurants already using Sun\'s Bean Sprout to serve their customers better.',
     ctaCta: 'Create Your Menu — Free for 1 Month',
     copyright: "Sun's Bean Sprout. All rights reserved.",
+    guideTitle: 'Complete Setup Guide',
+    guideDesc: 'Follow these steps to get your digital menu up and running in minutes.',
+    guide1Title: 'Create Your Account',
+    guide1Desc: 'Click "Get Started Free" and fill in your restaurant name, choose a unique URL slug (e.g. my-restaurant), email, and password. Your menu will be available at /menu/your-slug.',
+    guide2Title: 'Set Up Your Restaurant Profile',
+    guide2Desc: 'Go to Settings in the admin panel. Upload your logo (paste image URL), choose your brand color, set your currency (THB, USD, etc.), and select your admin language (English or Thai).',
+    guide3Title: 'Add Menu Categories',
+    guide3Desc: 'Go to Menu in the admin panel. Create categories like "Appetizers", "Main Course", "Drinks", "Desserts". Each category name can be set in 5 languages (EN, TH, ZH, JA, ES).',
+    guide4Title: 'Add Menu Items with Images',
+    guide4Desc: 'Inside each category, add your dishes. Set the name and description in up to 5 languages, price, and paste an image URL to show a photo. Toggle "Spicy" for dishes that have a spicy level option.',
+    guide5Title: 'Create Tables & Generate QR Codes',
+    guide5Desc: 'Go to Tables and add your table numbers (1, 2, 3...). A QR code is auto-generated for each table. Go to QR Codes to view, and download each QR as a PNG image to print.',
+    guide6Title: 'Print QR Codes & Start Serving',
+    guide6Desc: 'Print the downloaded QR code PNGs and place them on each table. When customers scan with their phone camera, your menu opens instantly in their preferred language.',
+    guide7Title: 'Manage Table Bookings',
+    guide7Desc: 'Customers can book tables from your menu page. View and manage all reservations from the Bookings page in your admin panel. Confirm, complete, or cancel bookings easily.',
   },
   TH: {
     signIn: 'เข้าสู่ระบบ',
@@ -130,17 +151,33 @@ const t: Record<Lang, Record<string, string>> = {
     ctaDesc: "เข้าร่วมร้านอาหารที่ใช้ Sun's Bean Sprout เพื่อบริการลูกค้าได้ดียิ่งขึ้น",
     ctaCta: 'สร้างเมนูของคุณ — ฟรี 1 เดือน',
     copyright: "Sun's Bean Sprout สงวนลิขสิทธิ์",
+    guideTitle: 'คู่มือการตั้งค่าฉบับสมบูรณ์',
+    guideDesc: 'ทำตามขั้นตอนเหล่านี้เพื่อเริ่มใช้เมนูดิจิทัลได้ภายในไม่กี่นาที',
+    guide1Title: 'สร้างบัญชีของคุณ',
+    guide1Desc: 'คลิก "เริ่มต้นฟรี" และกรอกชื่อร้านอาหาร เลือก URL slug (เช่น my-restaurant) อีเมล และรหัสผ่าน เมนูของคุณจะเข้าถึงได้ที่ /menu/your-slug',
+    guide2Title: 'ตั้งค่าโปรไฟล์ร้านอาหาร',
+    guide2Desc: 'ไปที่ การตั้งค่า ในแผงควบคุม อัปโหลดโลโก้ (วาง URL รูปภาพ) เลือกสีแบรนด์ ตั้งค่าสกุลเงิน (THB, USD ฯลฯ) และเลือกภาษาผู้ดูแล (อังกฤษหรือไทย)',
+    guide3Title: 'เพิ่มหมวดหมู่เมนู',
+    guide3Desc: 'ไปที่ เมนู ในแผงควบคุม สร้างหมวดหมู่เช่น "อาหารเรียกน้ำย่อย" "อาหารจานหลัก" "เครื่องดื่ม" "ของหวาน" ชื่อหมวดหมู่ตั้งได้ 5 ภาษา (EN, TH, ZH, JA, ES)',
+    guide4Title: 'เพิ่มรายการอาหารพร้อมรูปภาพ',
+    guide4Desc: 'ภายในแต่ละหมวดหมู่ เพิ่มเมนูอาหาร ตั้งชื่อและคำอธิบายได้สูงสุด 5 ภาษา ตั้งราคา และวาง URL รูปภาพ สลับปุ่ม "เผ็ด" สำหรับเมนูที่มีตัวเลือกความเผ็ด',
+    guide5Title: 'สร้างโต๊ะและ QR Code',
+    guide5Desc: 'ไปที่ โต๊ะ และเพิ่มหมายเลขโต๊ะ (1, 2, 3...) QR code จะถูกสร้างอัตโนมัติ ไปที่ QR Codes เพื่อดูและดาวน์โหลด QR เป็นไฟล์ PNG',
+    guide6Title: 'พิมพ์ QR Code และเริ่มให้บริการ',
+    guide6Desc: 'พิมพ์ QR code PNG ที่ดาวน์โหลดและวางไว้บนโต๊ะแต่ละตัว เมื่อลูกค้าสแกนด้วยกล้องมือถือ เมนูจะเปิดทันทีในภาษาที่ลูกค้าเลือก',
+    guide7Title: 'จัดการการจองโต๊ะ',
+    guide7Desc: 'ลูกค้าสามารถจองโต๊ะจากหน้าเมนูของคุณ ดูและจัดการการจองทั้งหมดจากหน้า การจอง ในแผงควบคุม ยืนยัน เสร็จสิ้น หรือยกเลิกการจองได้ง่ายๆ',
   },
 }
 
 export default function LandingPage() {
-  const [lang, setLang] = useState<Lang>('EN')
+  const [lang, setLang] = useState<Lang>('TH')
   const s = t[lang]
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const browserLang = navigator.language.split('-')[0].toUpperCase()
-      if (browserLang === 'TH') setLang('TH')
+      if (browserLang === 'EN') setLang('EN')
     }
   }, [])
 
@@ -275,8 +312,46 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* Setup Guide */}
       <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+              <BookOpen className="h-4 w-4" />
+              {s.guideTitle}
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900">{s.guideTitle}</h2>
+            <p className="mt-3 text-gray-500">{s.guideDesc}</p>
+          </div>
+          <div className="space-y-6">
+            {[
+              { icon: Sprout, title: s.guide1Title, desc: s.guide1Desc, num: '1' },
+              { icon: Settings, title: s.guide2Title, desc: s.guide2Desc, num: '2' },
+              { icon: BarChart3, title: s.guide3Title, desc: s.guide3Desc, num: '3' },
+              { icon: ImagePlus, title: s.guide4Title, desc: s.guide4Desc, num: '4' },
+              { icon: QrCode, title: s.guide5Title, desc: s.guide5Desc, num: '5' },
+              { icon: Download, title: s.guide6Title, desc: s.guide6Desc, num: '6' },
+              { icon: CalendarCheck, title: s.guide7Title, desc: s.guide7Desc, num: '7' },
+            ].map(item => (
+              <div key={item.num} className="flex gap-4 items-start p-5 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                  {item.num}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <item.icon className="h-4 w-4 text-green-600 flex-shrink-0" />
+                    <h3 className="font-semibold text-gray-900">{item.title}</h3>
+                  </div>
+                  <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-gray-900">{s.pricingTitle}</h2>

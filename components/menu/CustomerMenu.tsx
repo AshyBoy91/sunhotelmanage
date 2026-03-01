@@ -2,9 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { CalendarCheck } from 'lucide-react'
 import { Language, getCustomerT, detectBrowserLanguage } from '@/lib/translations'
 import LanguagePicker from './LanguagePicker'
 import MenuItemCard from './MenuItemCard'
+
+const bookBtnLabel: Record<Language, string> = {
+  EN: 'Book a Table',
+  TH: 'จองโต๊ะ',
+  ZH: '预订桌位',
+  JA: 'テーブル予約',
+  ES: 'Reservar Mesa',
+}
 
 interface MenuItem {
   id: string
@@ -145,6 +155,14 @@ export default function CustomerMenu({ slug, tableId }: CustomerMenuProps) {
                 </p>
               )}
             </div>
+            <Link
+              href={`/menu/${slug}/book`}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-white flex-shrink-0 transition-opacity hover:opacity-90"
+              style={{ backgroundColor: primaryColor }}
+            >
+              <CalendarCheck className="h-4 w-4" />
+              <span className="hidden sm:inline">{bookBtnLabel[lang]}</span>
+            </Link>
           </div>
         </div>
       </header>

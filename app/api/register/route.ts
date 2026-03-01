@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
+import { defaultCategories, defaultMenuItems } from '@/lib/default-menu'
 
 export async function POST(req: NextRequest) {
   try {
@@ -48,6 +49,30 @@ export async function POST(req: NextRequest) {
         slug,
       },
     })
+
+    // Seed default categories and menu items
+    const createdCategories = []
+    for (const cat of defaultCategories) {
+      const created = await prisma.category.create({
+        data: { userId: user.id, ...cat },
+      })
+      createdCategories.push(created)
+    }
+
+    for (const item of defaultMenuItems) {
+      const { categoryIndex, ...itemData } = item
+      const category = createdCategories[categoryIndex]
+      if (category) {
+        await prisma.menuItem.create({
+          data: {
+            userId: user.id,
+            categoryId: category.id,
+            ...itemData,
+            available: true,
+          },
+        })
+      }
+    }
 
     return NextResponse.json(
       { message: 'Account created successfully', userId: user.id },

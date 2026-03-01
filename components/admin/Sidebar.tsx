@@ -8,6 +8,7 @@ import {
   UtensilsCrossed,
   TableProperties,
   QrCode,
+  CalendarCheck,
   Settings,
   LogOut,
   Sprout,
@@ -26,6 +27,7 @@ export default function AdminSidebar() {
     { href: '/admin/menu', icon: UtensilsCrossed, label: t.menu },
     { href: '/admin/tables', icon: TableProperties, label: t.tables },
     { href: '/admin/qrcodes', icon: QrCode, label: t.qrCodes },
+    { href: '/admin/bookings', icon: CalendarCheck, label: lang === 'EN' ? 'Bookings' : 'การจอง' },
     { href: '/admin/settings', icon: Settings, label: t.settings },
   ]
 
@@ -59,7 +61,7 @@ export default function AdminSidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-orange-50 text-orange-700'
+                  ? 'bg-green-50 text-green-700'
                   : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               )}
             >
