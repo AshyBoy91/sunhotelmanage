@@ -43,11 +43,14 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.id = user.id
         token.slug = (user as { slug?: string }).slug
         token.adminLang = (user as { adminLang?: string }).adminLang
+      }
+      if (trigger === 'update' && session?.adminLang) {
+        token.adminLang = session.adminLang
       }
       return token
     },
