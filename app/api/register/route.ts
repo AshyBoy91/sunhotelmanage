@@ -74,6 +74,21 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // Seed 15 default tables with QR codes
+    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+    for (let i = 1; i <= 15; i++) {
+      const table = await prisma.table.create({
+        data: { userId: user.id, tableNumber: i },
+      })
+      await prisma.qRCode.create({
+        data: {
+          userId: user.id,
+          tableId: table.id,
+          qrUrl: `${baseUrl}/menu/${slug}/${table.id}`,
+        },
+      })
+    }
+
     return NextResponse.json(
       { message: 'Account created successfully', userId: user.id },
       { status: 201 }

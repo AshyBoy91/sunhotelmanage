@@ -3,7 +3,7 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { adminTranslations, AdminLanguage } from '@/lib/translations'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { UtensilsCrossed, TableProperties, QrCode, ExternalLink } from 'lucide-react'
+import { UtensilsCrossed, TableProperties, QrCode, ExternalLink, ChefHat, Users } from 'lucide-react'
 
 export default async function AdminDashboard() {
   const session = await getServerSession(authOptions)
@@ -71,28 +71,76 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      {/* Menu URL */}
+      {/* Staff Links */}
       {user?.slug && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Your Menu URL</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              <code className="flex-1 text-sm text-orange-600 break-all">
-                /menu/{user.slug}
-              </code>
-              <a
-                href={`/menu/${user.slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Your Menu URL</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                <code className="flex-1 text-sm text-orange-600 break-all">
+                  /menu/{user.slug}
+                </code>
+                <a
+                  href={`/menu/${user.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card>
+              <CardHeader className="flex flex-row items-center gap-3 pb-2">
+                <div className="bg-orange-50 text-orange-600 p-2 rounded-lg">
+                  <ChefHat className="h-5 w-5" />
+                </div>
+                <CardTitle className="text-base">Kitchen Display</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Open on a tablet in the kitchen to see incoming orders.
+                </p>
+                <a
+                  href={`/kitchen/${user.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-orange-600 hover:underline"
+                >
+                  Open Kitchen Page <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center gap-3 pb-2">
+                <div className="bg-green-50 text-green-600 p-2 rounded-lg">
+                  <Users className="h-5 w-5" />
+                </div>
+                <CardTitle className="text-base">Front Desk</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-3">
+                  View orders, waiter calls, and today&apos;s bookings.
+                </p>
+                <a
+                  href={`/staff/${user.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-green-600 hover:underline"
+                >
+                  Open Front Desk Page <ExternalLink className="h-3 w-3" />
+                </a>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       )}
     </div>
   )
